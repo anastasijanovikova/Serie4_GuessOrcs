@@ -62,10 +62,7 @@ public class GuessOrc {
     //get set mineShaftId if else to compare to guessedMineShaftId
     //nested if else loop for or switch?? // was input made equal?
     //switch creates Array of Strings, then random methde to print one of them?
-    if (mineShaftId == guessedMineShaftId){
-        System.out.println ("You win!");}
-    else
-        (for)
+    (for)
 
 
 
@@ -86,23 +83,59 @@ public class GuessOrc {
      */
     public void start() {
             // Your code goes here
-            System.out.println (String generateOrcIntroScreen);
+            System.out.println (generateOrcIntroScreen);
             System.out.println (" ");
             System.out.println ( printMap );
             
+            //loop to go through six times, break if won, default "You loose!"
+            for (currentMove=0; currentMove<=5; currentMove++)
+            {
             Scanner scan = new Scanner (System.in);
             
-            
-            System.out.print ("Please enter your" +x "guess:");
-                for currentMove =1
-            //+x -> first, second etc until final(sixth) guess
-            
-            String guessedMineShaft
+            //asks for guessedMineShaft with right turn (determined through switch statement)
+            System.out.println ("Please enter your" +x +"guess:");
+                String x;
+                switch (currentMove)
+                {case 0:
+                    x = "first";
+                    break;
+                 case 1:
+                    x = "second";
+                    break;
+                 case 2:
+                    x = "third";
+                    break;
+                 case 3:
+                    x = "fourth";
+                    break;
+                 case 4:
+                    x = "fifth";
+                    break;
+                 case 5:
+                    x = "final";
+                    break;
+                 default:
+                    x = "debug";
+                }
+            String guessedMineShaft;
             guessedMineShaft = scan.nextLine();
+            //converting input-guess to lower case letter
             guessedMineShaft = guessedMineShaft.trim().toLowerCase();
-            
+            //converting guessed mineShaft into Int using helper methode for better comparing 
             int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
             
+            //
+                if (mineShaftId == guessedMineShaftId){
+                    System.out.println ("You win!");
+                    break;
+                }
+            calculateHint ();
+            }
+            char mineShaft;
+            getMineShaftAsChar (mineShaftId) = mineShaft;
+            if (currentMove=6){
+                System.out.println ("You loose! The orcs attacked from mine shaft '" +mineShaft +"'");
+            }
         }
 
 
