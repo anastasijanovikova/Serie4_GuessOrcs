@@ -59,23 +59,27 @@ public class GuessOrc {
      * @return the id for a hint in HINT.
      */
     public int calculateHint( int guessedMineShaftId ) {
-        // Your code goes here for or ifelse 
-    //get set mineShaftId if else to compare to guessedMineShaftId
-    //nested if else loop for or switch?? // was input made equal?
-    //switch creates Array of Strings, then random methde to print one of them?
-    (for)
-
-
-
-
-
-
-
-
-
-
-
-
+        // Your code goes here
+    //switch creates Array of Strings, then random methode to print one of them
+    System.out.println ("Your Seismometer tells you that the orcs are " +randomHint);   
+    ArrayList<String> hintList = new ArrayList<String>();
+    switch (guessedMineShaftId){
+         case ( > mineShaftId):
+         hintList.add ("to the left");
+         case (< mineShaftId):
+         hintList.add ("to the right");
+         case (+5 >= mineShaftId):
+         hintList.add ("very far away");
+         case (-5 <= mineShaftId):
+         hintList.add ("very far away");
+         case():
+         hintList.add ("under stone");
+         case ():
+         hintList.add ("under dirt");
+         break;
+        }
+    int randomHint = new Random().nextInt(hintList.length);
+    String randomHint = (fruits[randomHint]);
     }
 
     /**
