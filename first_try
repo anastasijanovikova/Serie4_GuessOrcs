@@ -173,20 +173,6 @@ public class GuessOrc {
         }
 
 
-            //
-                if (mineShaftId == guessedMineShaftId){
-                    System.out.println ("You win!");
-                    break;
-                }
-            calculateHint ();
-            }
-            char mineShaft;
-            getMineShaftAsChar (mineShaftId) = mineShaft;
-            if (currentMove=6){
-                System.out.println ("You loose! The orcs attacked from mine shaft '" +mineShaft +"'");
-            }
-        }
-
 
     // --- Helper methods ---
 
