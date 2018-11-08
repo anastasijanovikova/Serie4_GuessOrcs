@@ -59,17 +59,20 @@ public class GuessOrc {
      * @return the id for a hint in HINT.
      */
     public int calculateHint( int guessedMineShaftId ) {
-        // Your code goes here
-    //switch creates Arraylist, then random method to generate helpTextId for printMap()
-      
-    ArrayList<Integers> hintList = new ArrayList<Integers>();
-    //creates numbers for switch statement to identify different classes
+        // Your code goes here; 
+        //create helpTextId to feed into printMap 
+    //switch creates Array of Strings, then random method to print one of them?
+    //System.out.println ("Your Seismometer tells you that the orcs are " +HINTS);   
+    List<Integer> possibleHints = new ArrayList<>();
+    //ArrayList<Integers> possibleHints = new ArrayList<Integers>(); <--- alternative??
+    
+    //create numbers for switch statement to identify different cases
     int i;
     if (guessedMineShaftId > mineShaftId) 
         i=0;
     if (guessedMineShaftId < mineShaftId) 
         i=1;
-    if (isThereStone == true)
+    if (isThereStone == true) //maybe need to define differently
         i=2;
     if (isThereStone == false)
         i=3;   
@@ -77,48 +80,48 @@ public class GuessOrc {
         i=4;
     if (guessedMineShaftId +5 >= mineShaftId) 
         i=4;
-
-    switch (i){
-         case (0):
-         hintList.add (0);
-         case (1):
-         hintList.add (1);
-         case (4):
-         hintList.add (4);
-         case(2):
-         hintList.add (2);
-         case (3):
-         hintList.add (3);
+    
+        switch (i){
+         case 1:
+         possibleHints.add (0);
+         case 2:
+         possibleHints.add (1);
+         case 3:
+         possibleHints.add (2);
+         case 4:
+         possibleHints.add (3);
+         case 5:
+         possibleHints.add (4);
          break;
         }
-    int helpTextId = new Random().nextInt(hintList.length);
-   //output through print map
+    int helpTextId = new Random().nextInt(possibleHints.length);
+    
     }
 
     /**
      * Implement the game logic here.
      *
      */
-   public void start() {
+    public void start() {
             // Your code goes here
             
-            //print out remaining rows as well (printMap ())
-            // do I need to get/set currentMove etc???
+            //print out remaining rows as well
+            //get/set methods for column and helpTextId??
             
-            generateOrcIntroScreen();
+            generateOrcIntroScreen ();
             System.out.println (" ");
-            //get column and helpTextId für printMap ()
-            printMap ();
+            
+            printMap(column, helpTextId);
             
             //loop to go through six times, break if won, default "You loose!"
-            for (int currentMove=0; currentMove<=5; currentMove++)
+            for (int currentMove = 0; currentMove <= 5; currentMove ++)
             {
             Scanner scan = new Scanner (System.in);
             
             //while infinite loop tests input for validity and asks to re-enter guessed column until input valid 
             while (true) {
             //asks for guessedMineShaft with right turn (determined through switch statement)
-            System.out.println ("Please enter your" +x +"guess:");
+            
                 String x;
                 switch (currentMove)
                 {case 0:
@@ -142,12 +145,12 @@ public class GuessOrc {
                  default:
                     x = "debug";
                 }
-            
+            System.out.println ("Please enter your" +x +"guess:");
             
             //scanning the first character of the input
-            char guessedMineShaft = scan.next().CharAt(0);
+            char guessedMineShaft = scan.next().charAt(0);
             //converting input-guess to lower case letter
-            guessedMineShaft = guessedMineShaft.trim().toLowerCase();
+            guessedMineShaft = guessedMineShaft.toLowerCase();
             //converting guessed mineShaft into Int using helper methode for better comparing 
             int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
            
@@ -158,9 +161,18 @@ public class GuessOrc {
             
             System.out.println ("Your entry was invalid.");
             
+        }
             }
-            
-            
+            //actually unsure what these are/do...
+            char mineShaft;
+            getMineShaftAsChar (mineShaftId) = mineShaft;
+            //in case you need more than 6 moves, might already be defined later...
+            if (currentMove =6){
+                System.out.println ("You loose! The orcs attacked from mine shaft '" +mineShaft +"'");
+            }
+        }
+
+
             //
                 if (mineShaftId == guessedMineShaftId){
                     System.out.println ("You win!");
