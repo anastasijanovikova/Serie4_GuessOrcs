@@ -64,8 +64,7 @@ public class GuessOrc {
         //create helpTextId to feed into printMap 
     //switch creates Array of Strings, then random method to print one of them?
     //System.out.println ("Your Seismometer tells you that the orcs are " +HINTS);   
-    //ArrayList<Integer> possibleHints = new ArrayList<Integer>();
-    List<Integers> possibleHints = new List<Integers>();
+    ArrayList<Integer> possibleHints = new ArrayList<Integer>();
     
     //create numbers for switch statement to identify different cases
     int i;
