@@ -77,18 +77,17 @@ public class GuessOrc {
         i=4;
     if (guessedMineShaftId +5 >= mineShaftId) 
         i=4;
+
     switch (i){
-         case ( > mineShaftId):
+         case (0):
          hintList.add (0);
-         case (< mineShaftId):
+         case (1):
          hintList.add (1);
-         case (+5 >= mineShaftId):
+         case (4):
          hintList.add (4);
-         case (-5 <= mineShaftId):
-         hintList.add (4);
-         case():
+         case(2):
          hintList.add (2);
-         case ():
+         case (3):
          hintList.add (3);
          break;
         }
@@ -112,7 +111,7 @@ public class GuessOrc {
             printMap ();
             
             //loop to go through six times, break if won, default "You loose!"
-            for (currentMove=0; currentMove<=5; currentMove++)
+            for (int currentMove=0; currentMove<=5; currentMove++)
             {
             Scanner scan = new Scanner (System.in);
             
