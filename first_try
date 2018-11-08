@@ -60,26 +60,40 @@ public class GuessOrc {
      */
     public int calculateHint( int guessedMineShaftId ) {
         // Your code goes here
-    //switch creates Array of Strings, then random methode to print one of them
-    System.out.println ("Your Seismometer tells you that the orcs are " +randomHint);   
-    ArrayList<String> hintList = new ArrayList<String>();
-    switch (guessedMineShaftId){
+    //switch creates Arraylist, then random method to generate helpTextId for printMap()
+      
+    ArrayList<Integers> hintList = new ArrayList<Integers>();
+    //creates numbers for switch statement to identify different classes
+    int i;
+    if (guessedMineShaftId > mineShaftId) 
+        i=0;
+    if (guessedMineShaftId < mineShaftId) 
+        i=1;
+    if (isThereStone == true)
+        i=2;
+    if (isThereStone == false)
+        i=3;   
+    if (guessedMineShaftId -5 <= mineShaftId) 
+        i=4;
+    if (guessedMineShaftId +5 >= mineShaftId) 
+        i=4;
+    switch (i){
          case ( > mineShaftId):
-         hintList.add ("to the left");
+         hintList.add (0);
          case (< mineShaftId):
-         hintList.add ("to the right");
+         hintList.add (1);
          case (+5 >= mineShaftId):
-         hintList.add ("very far away");
+         hintList.add (4);
          case (-5 <= mineShaftId):
-         hintList.add ("very far away");
+         hintList.add (4);
          case():
-         hintList.add ("under stone");
+         hintList.add (2);
          case ():
-         hintList.add ("under dirt");
+         hintList.add (3);
          break;
         }
-    int randomHint = new Random().nextInt(hintList.length);
-    String randomHint = (fruits[randomHint]);
+    int helpTextId = new Random().nextInt(hintList.length);
+   //output through print map
     }
 
     /**
@@ -89,11 +103,13 @@ public class GuessOrc {
    public void start() {
             // Your code goes here
             
-            //print out remaining rows as well
+            //print out remaining rows as well (printMap ())
+            // do I need to get/set currentMove etc???
             
-            System.out.println (generateOrcIntroScreen);
+            generateOrcIntroScreen();
             System.out.println (" ");
-            System.out.println ( printMap );
+            //get column and helpTextId für printMap ()
+            printMap ();
             
             //loop to go through six times, break if won, default "You loose!"
             for (currentMove=0; currentMove<=5; currentMove++)
