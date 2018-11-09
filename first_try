@@ -68,6 +68,8 @@ public class GuessOrc {
     
     //create numbers for switch statement to identify different cases
     int i;
+   int i;
+    boolean isThereStone;
     if (guessedMineShaftId > mineShaftId) 
         i=0;
     if (guessedMineShaftId < mineShaftId) 
@@ -94,7 +96,7 @@ public class GuessOrc {
          possibleHints.add (4);
          break;
         }
-    int helpTextId = new Random().nextInt(possibleHints.length);
+    int helpTextId = new Random().nextInt(possibleHints.size());
     
     }
 
@@ -110,7 +112,8 @@ public class GuessOrc {
             
             generateOrcIntroScreen ();
             System.out.println (" ");
-            
+            int helpTextId;
+            int column;
             printMap(column, helpTextId);
             
             //loop to go through six times, break if won, default "You loose!"
