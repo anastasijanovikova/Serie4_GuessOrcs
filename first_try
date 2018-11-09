@@ -152,7 +152,7 @@ public class GuessOrc {
             //scanning the first character of the input
             char guessedMineShaft = scan.next().charAt(0);
             //converting input-guess to lower case letter
-            guessedMineShaft = guessedMineShaft.toLowerCase();
+            guessedMineShaft = Character.toLowerCase();
             //converting guessed mineShaft into Int using helper methode for better comparing 
             int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
            
