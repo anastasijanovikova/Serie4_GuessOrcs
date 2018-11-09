@@ -68,7 +68,6 @@ public class GuessOrc {
     
     //create numbers for switch statement to identify different cases
     int i;
-   int i;
     boolean isThereStone;
     if (guessedMineShaftId > mineShaftId) 
         i=0;
