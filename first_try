@@ -64,11 +64,15 @@ public class GuessOrc {
         //create helpTextId to feed into printMap 
     //switch creates Array of Strings, then random method to print one of them?
     //System.out.println ("Your Seismometer tells you that the orcs are " +HINTS);   
-    ArrayList<Integer> possibleHints = new ArrayList<Integer>();
+   ArrayList<Integer> possibleHints = new ArrayList<Integer>();
     
     //create numbers for switch statement to identify different cases
-    int i;
-    boolean isThereStone;
+    int i = 0;
+    boolean isThereStone = false;
+    int currentGuess = movesMade ();
+    if ((guessedMineShaftId + currentGuess) % 2 == 0) {
+                    isThereStone = true;
+                }
     if (guessedMineShaftId > mineShaftId) 
         i=0;
     if (guessedMineShaftId < mineShaftId) 
@@ -97,6 +101,8 @@ public class GuessOrc {
         }
     int helpTextId = new Random().nextInt(possibleHints.size());
     
+    return helpTextId;
+    
     }
 
     /**
@@ -111,9 +117,7 @@ public class GuessOrc {
             
             generateOrcIntroScreen ();
             System.out.println (" ");
-            int helpTextId;
-            int column;
-            printMap(column, helpTextId);
+            
             
             //loop to go through six times, break if won, default "You loose!"
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
@@ -152,10 +156,15 @@ public class GuessOrc {
             //scanning the first character of the input
             char guessedMineShaft = scan.next().charAt(0);
             //converting input-guess to lower case letter
-            guessedMineShaft = Character.toLowerCase();
+            guessedMineShaft = Character.toLowerCase(guessedMineShaft);
             //converting guessed mineShaft into Int using helper methode for better comparing 
             int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
-           
+            
+            int currentGuess = movesMade();
+            int helpTextId = calculateHint(guessedMineShaftId);
+            int column = 0;
+            printMap(column, helpTextId);
+            
             // break while loop if input is valid
             if (guessedMineShaftId == 1 || guessedMineShaftId ==2 || guessedMineShaftId ==3 || guessedMineShaftId ==4 || guessedMineShaftId ==5 || guessedMineShaftId ==6 || guessedMineShaftId ==7 || guessedMineShaftId ==8 || guessedMineShaftId ==9 || guessedMineShaftId ==10 || guessedMineShaftId ==11) {
             
@@ -163,18 +172,17 @@ public class GuessOrc {
             
             System.out.println ("Your entry was invalid.");
             
-        }
-            }
+           }
+          }
             //actually unsure what these are/do...
             char mineShaft;
-            getMineShaftAsChar (mineShaftId) = mineShaft;
+            mineShaft = getMineShaftAsChar (mineShaftId);
             //in case you need more than 6 moves, might already be defined later...
-            if (currentMove =6){
+            int currentMove;
+            if (movesMade() == MAX_ATTEMPTS){
                 System.out.println ("You loose! The orcs attacked from mine shaft '" +mineShaft +"'");
             }
         }
-
-
 
     // --- Helper methods ---
 
