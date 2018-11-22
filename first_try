@@ -115,66 +115,72 @@ public class GuessOrc {
             //loop to go through six times, break if won, default "You loose!"
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
             {
-                       
+              if (column != mineShaftId)
+              {
             //while infinite loop tests input for validity and asks to re-enter guessed column until input valid 
-            while (true) {
-            //asks for guessedMineShaft with right turn (determined through switch statement)
+                while (true) {
+                    //asks for guessedMineShaft with right turn (determined through switch statement)
             
-                String x;
-                switch (currentMove)
-                {case 0:
-                    x = "first";
-                    break;
-                 case 1:
-                    x = "second";
-                    break;
-                 case 2:
-                    x = "third";
-                    break;
-                 case 3:
-                    x = "fourth";
-                    break;
-                 case 4:
-                    x = "fifth";
-                    break;
-                 case 5:
-                    x = "final";
-                    break;
-                 default:
-                    x = "debug";
+                    String x;
+                    switch (currentMove)
+                    {case 0:
+                        x = "first";
+                        break;
+                     case 1:
+                        x = "second";
+                        break;
+                     case 2:
+                        x = "third";
+                        break;
+                     case 3:
+                        x = "fourth";
+                        break;
+                     case 4:
+                        x = "fifth";
+                        break;
+                     case 5:
+                        x = "final";
+                        break;
+                     default:
+                        x = "debug";
                 }
-            System.out.println ("Please enter your "  + x  +" guess:");
+                System.out.println ("Please enter your "  + x  +" guess:");
             
            
             
-            //scanning the first character of the input
-            Scanner scan = new Scanner (System.in);
-            char guessedMineShaft = scan.next().charAt(0);
-            //converting input-guess to lower case letter
-            guessedMineShaft = Character.toLowerCase(guessedMineShaft);
-            System.out.println(guessedMineShaft);
-            //converting guessed mineShaft into Int using helper methode for better comparing 
-            int column = getColumnAsInt (guessedMineShaft);
-            System.out.println(column);
-            //int currentGuess = movesMade();
-            int helpTextId = calculateHint(column);
-            System.out.println(helpTextId);
+                //scanning the first character of the input
+                Scanner scan = new Scanner (System.in);
+                char guessedMineShaft = scan.next().charAt(0);
+                //converting input-guess to lower case letter
+                guessedMineShaft = Character.toLowerCase(guessedMineShaft);
+                System.out.println(guessedMineShaft);
+                //converting guessed mineShaft into Int using helper methode for better comparing 
+                int column = getColumnAsInt (guessedMineShaft);
+                System.out.println(column);
+                //int currentGuess = movesMade();
+                int helpTextId = calculateHint(column);
+                System.out.println(helpTextId);
             
-            System.out.println(mineShaftId);
-            //int column;
-            printMap(guessedMineShaft, helpTextId);
+                System.out.println(mineShaftId);
+                //int column;
+                printMap(column, helpTextId);
            
-            // break while loop if input is valid
-            if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) 
-            {
-            break;
-            }
+                // break while loop if input is valid
+                    if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) 
+                    {
+                        break;
+                    }
             
-            System.out.println ("Your entry was invalid.");
+                    System.out.println ("Your entry was invalid.");
             
             
             
-        }
+              }
+             }
+             else 
+             {
+                 break;
+                }
             }
             //feeds the mineShaft Char to the resolution
             char mineShaft;
