@@ -71,44 +71,28 @@ public class GuessOrc {
     int currentGuess = movesMade();
     boolean isThereStone = false;
     
-    if ((column + currentGuess) % 2 == 0) {
-                    isThereStone = true;
+    if ((mineShaftId + movesMade()) % 2 == 1) {
+                    possibleHints.add(2);
                 }
+    else {
+    possibleHints.add (3);
+    }
+    
     if (column > mineShaftId) 
-        i=0;
-        possibleHints.add (0);
+    {    i=0;
+        possibleHints.add (0);}
     if (column < mineShaftId) 
-        i=1;
-        possibleHints.add (1);
-    if (isThereStone == true) //maybe need to define differently
-        i=2;
-        possibleHints.add (2);
-    if (isThereStone == false)
-        i=3;   
-        possibleHints.add (3);
+        {i=1;
+        possibleHints.add (1);}
     if (column -5 <= mineShaftId) 
-        i=4;
-        possibleHints.add (4);
+        {i=4;
+        possibleHints.add (4);}
     if (column +5 >= mineShaftId) 
-        i=4;
-        possibleHints.add (4);
-    /*
-        switch (i){
-         case 1:
-         possibleHints.add (0);
-         case 2:
-         possibleHints.add (1);
-         case 3:
-         possibleHints.add (2);
-         case 4:
-         possibleHints.add (3);
-         case 5:
-         possibleHints.add (4);
-         break;
-        }*/
+        {i=4;
+        possibleHints.add (4);}
+    
     int helpTextId = new Random().nextInt(possibleHints.size());
     
-    System.out.println(helpTextId);
     return helpTextId;
     }
 
@@ -175,13 +159,16 @@ public class GuessOrc {
             //int currentGuess = movesMade();
             int helpTextId = calculateHint(column);
             System.out.println(helpTextId);
+            
+            System.out.println(mineShaftId);
             //int column;
             printMap(guessedMineShaft, helpTextId);
            
             // break while loop if input is valid
-            if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) {
-            
-            break;}
+            if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) 
+            {
+            break;
+            }
             
             System.out.println ("Your entry was invalid.");
             
@@ -197,8 +184,7 @@ public class GuessOrc {
             
             if (movesMade() == MAX_ATTEMPTS){
                 System.out.println ("You loose! The orcs attacked from mine shaft '" +mineShaft +"'");
-                
-             
+           
             }
         }
 
