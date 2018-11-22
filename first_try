@@ -56,10 +56,10 @@ public class GuessOrc {
     /**
      * Implement your hint calculation here.
      *
-     * @param guessedMineShaftId the guessed mine shaft.
+     * @param column the guessed mine shaft.
      * @return the id for a hint in HINT.
      */
-    public int calculateHint( int guessedMineShaftId ) {
+    public int calculateHint( int column ) {
         // Your code goes here; 
         //create helpTextId to feed into printMap 
     //switch creates Array of Strings, then random method to print one of them?
@@ -71,13 +71,13 @@ public class GuessOrc {
     int currentGuess = movesMade();
     boolean isThereStone = false;
     
-    if ((guessedMineShaftId + currentGuess) % 2 == 0) {
+    if ((column + currentGuess) % 2 == 0) {
                     isThereStone = true;
                 }
-    if (guessedMineShaftId > mineShaftId) 
+    if (column > mineShaftId) 
         i=0;
         possibleHints.add (0);
-    if (guessedMineShaftId < mineShaftId) 
+    if (column < mineShaftId) 
         i=1;
         possibleHints.add (1);
     if (isThereStone == true) //maybe need to define differently
@@ -86,10 +86,10 @@ public class GuessOrc {
     if (isThereStone == false)
         i=3;   
         possibleHints.add (3);
-    if (guessedMineShaftId -5 <= mineShaftId) 
+    if (column -5 <= mineShaftId) 
         i=4;
         possibleHints.add (4);
-    if (guessedMineShaftId +5 >= mineShaftId) 
+    if (column +5 >= mineShaftId) 
         i=4;
         possibleHints.add (4);
     /*
@@ -170,16 +170,16 @@ public class GuessOrc {
             guessedMineShaft = Character.toLowerCase(guessedMineShaft);
             System.out.println(guessedMineShaft);
             //converting guessed mineShaft into Int using helper methode for better comparing 
-            int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
-            System.out.println(guessedMineShaftId);
+            int column = getColumnAsInt (guessedMineShaft);
+            System.out.println(column);
             //int currentGuess = movesMade();
-            int helpTextId = calculateHint(guessedMineShaftId);
+            int helpTextId = calculateHint(column);
             System.out.println(helpTextId);
             //int column;
             printMap(guessedMineShaft, helpTextId);
            
             // break while loop if input is valid
-            if (guessedMineShaftId == 0 || guessedMineShaftId == 1 || guessedMineShaftId ==2 || guessedMineShaftId ==3 || guessedMineShaftId ==4 || guessedMineShaftId ==5 || guessedMineShaftId ==6 || guessedMineShaftId ==7 || guessedMineShaftId ==8 || guessedMineShaftId ==9 || guessedMineShaftId ==10 || guessedMineShaftId ==11) {
+            if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) {
             
             break;}
             
