@@ -79,11 +79,11 @@ public class GuessOrc {
     }
     
     if (column > mineShaftId) 
-    {    i=0;
-        possibleHints.add (0);}
-    if (column < mineShaftId) 
-        {i=1;
+    {    i=1;
         possibleHints.add (1);}
+    if (column < mineShaftId) 
+        {i=0;
+        possibleHints.add (0);}
     if (column -5 <= mineShaftId) 
         {i=4;
         possibleHints.add (4);}
@@ -115,8 +115,7 @@ public class GuessOrc {
             //loop to go through six times, break if won, default "You loose!"
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
             {
-              if (column != mineShaftId)
-              {
+             
             //while infinite loop tests input for validity and asks to re-enter guessed column until input valid 
                 while (true) {
                     //asks for guessedMineShaft with right turn (determined through switch statement)
@@ -172,16 +171,18 @@ public class GuessOrc {
                     }
             
                     System.out.println ("Your entry was invalid.");
-            
-            
-            
-              }
+               if(column == mineShaftId)
+                    {
+                        System.out.println ("You won!");
+                        break;
+                    }
              }
-             else 
-             {
-                 break;
-                }
+             
+             
             }
+           
+            
+            
             //feeds the mineShaft Char to the resolution
             char mineShaft;
             mineShaft = getMineShaftAsChar (mineShaftId);
