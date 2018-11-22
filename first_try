@@ -3,19 +3,19 @@
 * 					Raphaela Seeger 16-113-441								 *
 * 					Anastasija Novikova 16-825.390				             *
 \* ************************************************************************* */
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.ArrayList;
+/* ************************************************************************* *\
+*                Programmierung 1 HS 2018 - Serie 4-1                    
+                 Raphaela Seeger 16-113-441
+                 Anastasija Novikova 16-825-390                              *
+\* ************************************************************************* */
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class GuessOrc {
 
     // Store the orc chieftain position.
-    Random rand = new Random();
-	private int mineShaftId = rand.nextInt(12);
-	//private int mineShaftId = 0;
-	
-	
+    private int mineShaftId;
+
     // Amount of attempts we get to stop the orcs.
     // Use 'MAX_ATTEMPTS'' instead of coding a number
     // directly into your program.
@@ -36,7 +36,7 @@ public class GuessOrc {
 
     // That's what the orc horde looks like.
     public final String ORCS =  "  ┗(｀Дﾟ┗(｀ﾟДﾟ´)┛ﾟД´)┛  ";
-    // If you use WINDOWS (or the above line just looks wrong) change it to this:
+    // If you use WINDOWS (or the above line just looks wrong) change it to this:3
     // public final String ORCS =  "  - - - ORC--ARMY - - -  ";
 
     //Do not modify or access!
@@ -64,12 +64,12 @@ public class GuessOrc {
      * @param guessedMineShaftId the guessed mine shaft.
      * @return the id for a hint in HINT.
      */
-    public int calculateHint( int guessedMineShaftId) {
+    public int calculateHint( int guessedMineShaftId ) {
         // Your code goes here; 
         //create helpTextId to feed into printMap 
     //switch creates Array of Strings, then random method to print one of them?
     //System.out.println ("Your Seismometer tells you that the orcs are " +HINTS);   
-    ArrayList<Integer> possibleHints = new ArrayList<Integer>();
+      ArrayList<Integer> possibleHints = new ArrayList<Integer>();
     
     //create numbers for switch statement to identify different cases
     int i = 0;
@@ -130,6 +130,8 @@ public class GuessOrc {
             System.out.println(generateOrcIntroScreen());
             System.out.println (" ");
            
+            //randomize mineShaftId
+            randomizeMineShaftId();
             
             //loop to go through six times, break if won, default "You loose!"
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
@@ -162,7 +164,7 @@ public class GuessOrc {
                  default:
                     x = "debug";
                 }
-            System.out.println ("Please enter your" + " " + x + " " +"guess:");
+            System.out.println ("Please enter your "  + x  +" guess:");
             
            
             
@@ -174,7 +176,7 @@ public class GuessOrc {
             System.out.println(guessedMineShaft);
             //converting guessed mineShaft into Int using helper methode for better comparing 
             int guessedMineShaftId = getColumnAsInt (guessedMineShaft);
-			System.out.println(guessedMineShaftId);
+            System.out.println(guessedMineShaftId);
             //int currentGuess = movesMade();
             int helpTextId = calculateHint(guessedMineShaftId);
             System.out.println(helpTextId);
@@ -192,7 +194,7 @@ public class GuessOrc {
             
         }
             }
-            //actually unsure what these are/do...
+            //feeds the mineShaft Char to the resolution
             char mineShaft;
             mineShaft = getMineShaftAsChar (mineShaftId);
             System.out.println(mineShaft);
@@ -205,7 +207,15 @@ public class GuessOrc {
             }
         }
 
-
+        //helper methode random number for mineShaftId
+    private int randomizeMineShaftId()
+    {
+        //randomizing mineShaftId Number between 0-11    
+        int cutoffUpper = 11;
+        int cutoffLower =0;
+        mineShaftId = ThreadLocalRandom.current().nextInt(cutoffLower, cutoffUpper++);
+        return mineShaftId;
+   }
 
     // --- Helper methods ---
 
