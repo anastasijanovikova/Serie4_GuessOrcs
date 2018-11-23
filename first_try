@@ -116,6 +116,8 @@ public class GuessOrc {
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
             {
              
+                boolean checkWin = false;
+                
             //while infinite loop tests input for validity and asks to re-enter guessed column until input valid 
                 while (true) {
                     //asks for guessedMineShaft with right turn (determined through switch statement)
@@ -171,13 +173,19 @@ public class GuessOrc {
                     }
             
                     System.out.println ("Your entry was invalid.");
-               if(column == mineShaftId)
+               //set a boolean to true if Won -> to acess outside and break out of for loop
+                    
+                    if(column == mineShaftId)
                     {
-                        System.out.println ("You won!");
-                        break;
+                       checkWin = true;
                     }
              }
              
+             if (checkWin == true)
+             {
+             System.out.println ("You won, congratulations!");
+             break;
+                }
              
             }
            
