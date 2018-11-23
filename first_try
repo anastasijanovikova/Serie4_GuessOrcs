@@ -80,19 +80,31 @@ public class GuessOrc {
     
     if (column > mineShaftId) 
     {    i=1;
-        possibleHints.add (1);}
+        possibleHints.add (0);}
     if (column < mineShaftId) 
         {i=0;
-        possibleHints.add (0);}
-    if (column -5 <= mineShaftId) 
+        possibleHints.add (1);}
+    if (column +5 <= mineShaftId) 
         {i=4;
         possibleHints.add (4);}
-    if (column +5 >= mineShaftId) 
+    if (column -5 >= mineShaftId) 
         {i=4;
         possibleHints.add (4);}
     
-    int helpTextId = new Random().nextInt(possibleHints.size());
+    System.out.println(possibleHints);
+    /*int hintSize = possibleHints.size();
+    int helpTextIdNum = new Random().nextInt(hintSize);
     
+    
+    int helpTextIdNum = new Random().nextInt(possibleHints.size());
+    System.out.println(helpTextIdNum);
+    int helpTextId = possibleHints.get(helpTextIdNum);
+    System.out.println(helpTextId);
+    return helpTextId;*/
+    
+    Random randomGenerator = new Random();
+    int index = randomGenerator.nextInt(possibleHints.size());
+    int helpTextId = possibleHints.get(index);
     return helpTextId;
     }
 
@@ -116,12 +128,13 @@ public class GuessOrc {
             for (int currentMove = 0; currentMove <= 5; currentMove ++)
             {
              
-                boolean checkWin = false;
+               boolean checkWin = false;
+               boolean getNextMove = true;
                 
             //while infinite loop tests input for validity and asks to re-enter guessed column until input valid 
-                while (true) {
+                while (getNextMove == true) {
                     //asks for guessedMineShaft with right turn (determined through switch statement)
-            
+					
                     String x;
                     switch (currentMove)
                     {case 0:
@@ -154,18 +167,35 @@ public class GuessOrc {
                 char guessedMineShaft = scan.next().charAt(0);
                 //converting input-guess to lower case letter
                 guessedMineShaft = Character.toLowerCase(guessedMineShaft);
-                System.out.println(guessedMineShaft);
                 //converting guessed mineShaft into Int using helper methode for better comparing 
                 int column = getColumnAsInt (guessedMineShaft);
-                System.out.println(column);
+                //System.out.println(column);
                 //int currentGuess = movesMade();
                 int helpTextId = calculateHint(column);
-                System.out.println(helpTextId);
+                //System.out.println(helpTextId);
             
                 System.out.println(mineShaftId);
                 //int column;
                 printMap(column, helpTextId);
            
+                
+               //set a boolean to true if Won -> to acess outside and break out of for loop
+                    
+                    if(column == mineShaftId)
+                    {
+						checkWin = true;						
+					}
+                    
+                    
+                    if(checkWin == true)
+                    {
+                       System.out.println ("You won, congratulations!");
+                       getNextMove = false;
+                    }
+                    
+                    
+                
+                
                 // break while loop if input is valid
                     if (column == 0 || column == 1 || column ==2 || column ==3 || column ==4 || column ==5 || column ==6 || column ==7 || column ==8 || column ==9 || column ==10 || column ==11) 
                     {
@@ -173,19 +203,12 @@ public class GuessOrc {
                     }
             
                     System.out.println ("Your entry was invalid.");
-               //set a boolean to true if Won -> to acess outside and break out of for loop
-                    
-                    if(column == mineShaftId)
-                    {
-                       checkWin = true;
-                    }
              }
              
-             if (checkWin == true)
+             if(getNextMove == false)
              {
-             System.out.println ("You won, congratulations!");
-             break;
-                }
+				break; 
+				}
              
             }
            
@@ -194,7 +217,7 @@ public class GuessOrc {
             //feeds the mineShaft Char to the resolution
             char mineShaft;
             mineShaft = getMineShaftAsChar (mineShaftId);
-            System.out.println(mineShaft);
+            //System.out.println(mineShaft);
             //in case you need more than 6 moves, might already be defined later...
             
             if (movesMade() == MAX_ATTEMPTS){
